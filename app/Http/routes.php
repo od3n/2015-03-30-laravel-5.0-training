@@ -13,6 +13,7 @@
 
 Route::resource('', 'WelcomeController@index');
 
+Route::get('item/{id}/delete', ['as' => 'item.delete', 'uses' => 'ItemController@delete']);
 Route::resource('item', 'ItemController');
 
 Route::get('home', 'HomeController@index');

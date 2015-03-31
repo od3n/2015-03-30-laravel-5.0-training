@@ -92,6 +92,14 @@ class ItemController extends Controller {
 		return \Redirect::route('item.show', $id);
 	}
 
+	public  function delete($id)
+	{
+		$item = \App\Item::find($id);
+		$item->delete();
+
+		return \Redirect::route('item.index');
+	}
+
 	/**
 	 * Remove the specified resource from storage.
 	 *
