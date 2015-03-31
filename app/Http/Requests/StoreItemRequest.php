@@ -24,6 +24,9 @@ class StoreItemRequest extends Request {
 		return [
 			//
 			'name' => ['required'],
+			//'description' => ['required', 'min:3']
+			'description' => 'required|min:3'
+
 		];
 	}
 
