@@ -27,7 +27,9 @@ class ItemController extends Controller {
 	public function create()
 	{
 		//
-		return view('item.create');		
+		$item = new \App\Item;
+
+		return view('item.create', compact('item'));		
 	}
 
 	/**

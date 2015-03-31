@@ -4,12 +4,13 @@
 	<title></title>
 </head>
 <body>
+{{ $item->id }}
 
-@if (isset($item->id))
-	{!! Form::open(['action' => 'ItemController@store']) !!}
+@if (!isset($item->id))
+	{!! Form::model(new \App\Item, ['route' => 'item.store']) !!}
 @else
-	{!! Form::open(['action' => 'ItemController@update', $item->id]) !!}
 @endif
+
 	<label>Description</label>
 	{!! Form::text('name', ($item->id) ? $item->name : Input::get('name')) !!}
 	<br />
