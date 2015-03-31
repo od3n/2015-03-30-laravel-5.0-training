@@ -4,7 +4,12 @@
 	<title></title>
 </head>
 <body>
-{{ $item->id }}
+
+@if ($errors->any())
+	@foreach ($errors->all() as $error)
+		<p>{{ $error }}</p>
+	@endforeach
+@endif
 
 @if (!isset($item->id))
 	{!! Form::model(new \App\Item, ['route' => 'item.store']) !!}
@@ -12,7 +17,7 @@
 	{!! Form::model($item, ['method' => 'patch', 'route' => ['item.update', $item->id]]) !!}
 @endif
 
-	<label>Description</label>
+	<label>Name</label>
 	{!! Form::text('name', ($item->id) ? $item->name : Input::get('name')) !!}
 	<br />
 	<label>Description</label>
