@@ -3,6 +3,9 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreItemRequest;
+use Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class ItemController extends Controller {
 
@@ -43,6 +46,14 @@ class ItemController extends Controller {
 		$item->name = $request->get('name');
 		$item->description = $request->get('description');
 		$item->active = ($request->get('active')) ? $request->get('active') : 0;
+		
+		$file = Request::file('image');
+
+		if ($file) {
+			Request::file('image')->move('images', $file->getClientOriginalName());
+			$item->image = $file->getClientOriginalName();
+		}
+
 		$item->save();
 
 		return \Redirect::route('item.index');
@@ -87,6 +98,18 @@ class ItemController extends Controller {
 		$item->name = $request->get('name');
 		$item->description = $request->get('description');
 		$item->active = ($request->get('active')) ? $request->get('active') : 0;
+
+		$file = Request::file('image');
+
+		if ($file) {
+			Request::file('image')->move('images', $file->getClientOriginalName());
+			$item->image = $file->getClientOriginalName();
+		}
+
+		if (Request::has('remove')) {
+			$item->image = null;
+		}
+
 		$item->save();
 
 		return \Redirect::route('item.show', $id);

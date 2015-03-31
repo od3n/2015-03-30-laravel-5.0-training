@@ -12,9 +12,9 @@
 @endif
 
 @if (!isset($item->id))
-	{!! Form::model(new \App\Item, ['route' => 'item.store']) !!}
+	{!! Form::model(new \App\Item, ['route' => 'item.store', 'enctype' => 'multipart/form-data']) !!}
 @else
-	{!! Form::model($item, ['method' => 'patch', 'route' => ['item.update', $item->id]]) !!}
+	{!! Form::model($item, ['method' => 'patch', 'route' => ['item.update', $item->id], 'enctype' => 'multipart/form-data']) !!}
 @endif
 
 	<label>Name</label>
@@ -22,9 +22,22 @@
 	<br />
 	<label>Description</label>
 	{!! Form::textarea('description', ($item->id) ? $item->description : Input::get('description')) !!}
+	{{ $errors->first('description') }}
 	<br />
 	<label>Active</label>
 	{!! Form::checkbox('active', 1, ($item->id) ? ($item->active) ? true : false : Input::get('description')) !!}
+	<br />
+	<label>Image</label>
+	{!! Form::file('image', null) !!}
+
+	@if ($item->image)
+		<br />
+		{!! HTML::image('images/' . $item->image, $item->name, ['width' => 150, 'height' => 150]) !!}
+		<br />
+		<label>Remove</label>
+		{!! Form::checkbox('remove', 1, false) !!}
+
+	@endif
 
 	<br />
 	{!! Form::submit() !!}
