@@ -42,7 +42,7 @@ class ItemController extends Controller {
 		$item = new \App\Item;
 		$item->name = $request->get('name');
 		$item->description = $request->get('description');
-		$item->active = $request->get('active');
+		$item->active = ($request->get('active')) ? $request->get('active') : 0;
 		$item->save();
 
 		return \Redirect::route('item.index');
@@ -86,7 +86,7 @@ class ItemController extends Controller {
 		$item = \App\Item::find($id);
 		$item->name = $request->get('name');
 		$item->description = $request->get('description');
-		$item->active = $request->get('active');
+		$item->active = ($request->get('active')) ? $request->get('active') : 0;
 		$item->save();
 
 		return \Redirect::route('item.show', $id);
