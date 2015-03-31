@@ -9,6 +9,7 @@
 @if (!isset($item->id))
 	{!! Form::model(new \App\Item, ['route' => 'item.store']) !!}
 @else
+	{!! Form::model($item, ['method' => 'patch', 'route' => ['item.update', $item->id]]) !!}
 @endif
 
 	<label>Description</label>
