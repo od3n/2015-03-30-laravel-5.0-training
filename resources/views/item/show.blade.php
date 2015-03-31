@@ -8,5 +8,7 @@
 {{ $item->description }}<br />
 {{ $item->active }}
 
+{!! link_to_route('item.index', 'Back to List') !!}
+
 </body>
 </html>

@@ -1,3 +1,7 @@
+
+{!! link_to_route('item.create', 'Create') !!}
+
+<br />
 List
 
 <ul>

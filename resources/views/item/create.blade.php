@@ -27,6 +27,9 @@
 	</form>
 	{!! Form::close() !!}
 
+@if (isset($item->id))
+	{!! link_to_route('item.index', 'Back to List') !!}
+@endif
 
 </body>
 </html>
