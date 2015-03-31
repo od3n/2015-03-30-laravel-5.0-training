@@ -23,6 +23,7 @@ class StoreItemRequest extends Request {
 	{
 		return [
 			//
+			'name' => ['required'],
 		];
 	}
 
